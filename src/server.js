@@ -1,4 +1,4 @@
-import { __dirname } from './utils/path.js';
+import { __dirname } from './path.js';
 import express from 'express';
 import handlebars from "express-handlebars"
 import viewsRouter from "./routes/views.router.js"
@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + '/views');
-app.set('view engine','handlebars');
+app.set('views engine','handlebars');
 
 app.use('/', viewsRouter);
 
