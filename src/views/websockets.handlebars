@@ -1,0 +1,28 @@
+<h1>Socket Cliente</h1>
+
+    <h2>Agregar productos</h2>
+<div>
+    <form id="productForm">
+        <label for="name">Nombre del producto:</label>
+        <input type="text" id="name" required>
+        <br>
+        <label for="price">Precio:</label>
+        <input type="number" id="price" required>
+        <br>
+        <input type="submit">Agregar producto</input>
+    </form>
+</div>
+
+<p id="products"></p>
+
+<div>
+    <form id="formDelete">
+        <label for="name">producto a eliminar</label>
+        <input type="text" id="nameDelete" required>
+        <input type="submitDelete">Eliminar producto</input>
+    </form>
+</div>
+
+<p id="productDelete"></p>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/index.js"></script>
