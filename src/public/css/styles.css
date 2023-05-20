@@ -1,0 +1,36 @@
+#header {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: start;
+}
+
+h1, h2, .title {
+    margin: 50px;
+    max-width: 800px;
+}
+
+.container{
+    display:flex;
+    gap:100px;
+
+}
+
+#productForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#productForm label {
+    width: 75px;
+}
+
+#productForm input {
+    height: 20px;
+    width: 260px;
+}
+
+#add__prod {
+    margin-top: 25px;
+    width: 100%
+}

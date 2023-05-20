@@ -4,10 +4,10 @@ import cartsRouter from "./routes/cartsRoutes.js"
 import express from 'express';
 import handlebars from 'express-handlebars';
 import { productManager } from "./manager/productsManager.js";
-import productRouter from "./routes/productRouter.js"
+import productsRouter from './routes/products-router.js';
 import viewsRouter from "./routes/viewsRouter.js"
 
-const app = express();
+const app = express(); 
 const port = 8080;
 
 app.use(express.json());
@@ -23,12 +23,67 @@ const http = app.listen(port, () => {
 })
 
 const io = new Server(http);
+
 app.engine('handlebars', handlebars.engine());
 app.set('view engine', 'handlebars');
-app.set('views', `${__dirname}/views`);
-app.use(express.static(`${__dirname}/public`));
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
+app.use('/products', productsRouter)
+app.use('/carts', cartsRouter)
+app.use('/views', viewsRouter)
 
-app.use('/products', productRouter);
+io.on('connection', async (socket) => {
+    console.log('User connected (ID: ', socket.id, ')');
+    socket.on('disconnect', () => {
+        console.log('User disconnected (ID:', socket.id, ')');
+    })
+    socket.on('message', (message) => {
+        console.log(message)
+    })
+    socket.emit('productsArray', await productManager.getProducts());
+    socket.on('newProduct', async (prod) => {
+        await productManager.addProduct(prod);
+        const arrayUpdate = await productManager.getProducts();
+        socket.emit('arrayUpdate', arrayUpdate);
+        socket.on('update', (update) => {
+            console.log(update);
+        })
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
 app.use('/carts', cartsRouter);
 app.use('/views', viewsRouter);
 
@@ -50,11 +105,11 @@ io.on("connection", async (socket) => {
 
     socket.on('newProduct', async (prod) => {
         try {
-            await productManager.addProduct(prod);
+            await productManager.createProduct(prod);
             const arrayUpdate = await productManager.getProducts();
             socket.emit('arrayUpdate', arrayUpdate);
         } catch (err) {
             console.log(err);
         }
     });
-});
+});*/

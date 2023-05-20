@@ -1,29 +1,24 @@
-<h1>Socket Cliente</h1>
+<div class="container">
+    <div>
+        <h1>Socket Cliente</h1>
+        <h2>Agregar productos</h2>
+        <div>
+            <form id="productForm">
+                <label>Nombre:</label><input type="text" name="title" id="prod__title">
+                <label>Price:</label><input type="number" name="price" id="prod__price">
+                <label>Stock:</label><input type="number" name="price" id="prod__stock">
+                <br>
+                <input id="add__prod" type="submit" value="Add">
+                <br>
+            </form>
+        </div>
+    </div>
 
-    <h2>Agregar productos</h2>
-<div>
-    <form id="productForm">
-        <label for="name">Nombre del producto:</label>
-        <input type="text" id="name" required>
-        <br>
-        <label for="price">Precio:</label>
-        <input type="number" id="price" required>
-        <br>
-        <input type="submit">Agregar producto</input>
-    </form>
+    <div id="products__container">
+        <ul id="products__list"></ul>
+    </div>
 </div>
 
-<p id="products"></p>
 
-<div>
-    <form id="formDelete">
-        <label for="name">producto a eliminar</label>
-        <input type="text" id="nameDelete" required>
-        <br>
-        <input type="submit" id="submitDelete">Eliminar</input>
-    </form>
-</div>
-
-<p id="productDelete"></p>
 <script src="/socket.io/socket.io.js"></script>
-<script src="js/productsRealTime.js"></script>
+<script src="/js/products-realtime.js"></script>
