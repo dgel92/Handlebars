@@ -14,7 +14,7 @@ const socket= io();
     socket.on('arrayProducts', (array) => {
         let arrayProducts = '';
         array.forEach(p => {
-            arrayProducts += `<li id="product__${p.id}">${p.title} - $${p.price} (${p.stock} uds.)</li>`;
+            arrayProducts += `<li id="product__${p.id}">${p.title} - $${p.price} (${p.stock} unidades.)</li>`;
     })
     products.innerHTML = arrayProducts;
     socket.emit('update', {message: 'Products updated correctly'})
@@ -23,7 +23,7 @@ const socket= io();
 socket.on('productsArray', (array) => {
     let productsArray = '';
     array.forEach(p => {
-        productsArray += `<li id="product__${p.id}">${p.title} - $${p.price} (${p.stock} uds.)</li>`;
+        productsArray += `<li id="product__${p.id}">${p.title} - $${p.price} (${p.stock} unidades.)</li>`;
     })
     products.innerHTML = productsArray;
     socket.emit('message', {message: 'Products recieved correctly'})
